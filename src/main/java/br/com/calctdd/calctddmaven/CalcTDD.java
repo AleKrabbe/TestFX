@@ -16,7 +16,7 @@ public class CalcTDD extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("Calculadora TDD");
-        //stage.getIcons().add(new Image("calctdd/resources/app-icon.png"));
+        stage.getIcons().add(new Image("/images/app-icon.png"));
         stage.setResizable(false);
         stage.setWidth(355);
         stage.setHeight(530);
