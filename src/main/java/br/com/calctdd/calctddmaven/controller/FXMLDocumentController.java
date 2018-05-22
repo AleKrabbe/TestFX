@@ -24,7 +24,7 @@ import javafx.scene.layout.Region;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
-    public TextField resultTextField;    
+    private TextField resultTextField;    
     @FXML
     private Button equalsBtn;
     @FXML
@@ -58,7 +58,7 @@ public class FXMLDocumentController implements Initializable {
             change.getControlNewText().length() <= 10 ? change : null));
     }
     
-    public void initializeButtonIconsSVG(){
+    private void initializeButtonIconsSVG(){
         loadSVG(equalsBtn, "equals-button", "icon-equals");   
         loadSVG(plusBtn, "plus-button", "icon-plus");
         loadSVG(minusBtn, "minus-button", "icon-minus");
@@ -67,7 +67,7 @@ public class FXMLDocumentController implements Initializable {
         loadSVG(backSpaceBtn, "backspace-button", "icon-backspace");
     }
     
-    public void loadSVG(Button btn, String btnClass, String iconClass){
+    private void loadSVG(Button btn, String btnClass, String iconClass){
         btn.getStyleClass().add(btnClass);
         btn.setPickOnBounds(true);
         Region icon = new Region();
@@ -76,7 +76,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     //TODO: Refactor
-    public void appenToResult(String ch){
+    private void appenToResult(String ch){
         try {
             double result = Double.parseDouble(resultTextField.getText());
             if(result == 0){
@@ -106,7 +106,7 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
-    public double getResult(){
+    private double getResult(){
         return Double.parseDouble(resultTextField.getText());
     }
     
@@ -117,7 +117,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     //TODO: Refactor
-    public void setActiveOperator (Button btn) {
+    private void setActiveOperator (Button btn) {
         if (btn == null) {
             if (lastActiveOperatorBtn != null){
                 lastActiveOperatorBtn.getStyleClass().remove("active");
@@ -135,7 +135,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     //TODO: Refactor
-    public void resolveExpression(Operadores OP) {
+    private void resolveExpression(Operadores OP) {
         shouldResetTextField = true;
         if (curExpr == null) {
             curExpr = new Expression(new Entry(getResult()), OP);
@@ -170,67 +170,67 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    public void handleDigitZeroPress(ActionEvent event) {
+    private void handleDigitZeroPress(ActionEvent event) {
         appenToResult("0");
         setActiveOperator(null);
     }
             
     @FXML
-    public void handleDigitOnePress() {
+    private void handleDigitOnePress() {
         appenToResult("1");
         setActiveOperator(null);
     }
             
     @FXML
-    public void handleDigitTwoPress(ActionEvent event) {
+    private void handleDigitTwoPress(ActionEvent event) {
         appenToResult("2");
         setActiveOperator(null);
     }
             
     @FXML
-    public void handleDigitThreePress(ActionEvent event) {
+    private void handleDigitThreePress(ActionEvent event) {
         appenToResult("3");
         setActiveOperator(null);
     }
             
     @FXML
-    public void handleDigitFourPress(ActionEvent event) {
+    private void handleDigitFourPress(ActionEvent event) {
         appenToResult("4");
         setActiveOperator(null);
     }
     
     @FXML
-    public void handleDigitFivePress(ActionEvent event) {
+    private void handleDigitFivePress(ActionEvent event) {
         appenToResult("5");
         setActiveOperator(null);
     }
     
     @FXML
-    public void handleDigitSixPress(ActionEvent event) {
+    private void handleDigitSixPress(ActionEvent event) {
         appenToResult("6");
         setActiveOperator(null);
     }    
     
     @FXML
-    public void handleDigitSevenPress(ActionEvent event) {
+    private void handleDigitSevenPress(ActionEvent event) {
         appenToResult("7");
         setActiveOperator(null);
     }
     
     @FXML
-    public void handleDigitEightPress(ActionEvent event) {
+    private void handleDigitEightPress(ActionEvent event) {
         appenToResult("8");
         setActiveOperator(null);
     }
 
     @FXML
-    public void handleDigitNinePress(ActionEvent event) {
+    private void handleDigitNinePress(ActionEvent event) {
         appenToResult("9");
         setActiveOperator(null);
     }
     
     @FXML
-    public void handleComma(ActionEvent event) {
+    private void handleComma(ActionEvent event) {
         if (getResult() == 0) {
             appenToResult("0.");
         } else {
@@ -240,43 +240,43 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
-    public void handleDoubleZeroes(ActionEvent event) {
+    private void handleDoubleZeroes(ActionEvent event) {
         appenToResult("00");
         setActiveOperator(null);
     }
     
     @FXML
-    public void handleDivision(ActionEvent event) {
+    private void handleDivision(ActionEvent event) {
         setActiveOperator(divBtn);
         resolveExpression(Operadores.DIV);
     }
 
     @FXML
-    public void handleMultiplication(ActionEvent event) {
+    private void handleMultiplication(ActionEvent event) {
         setActiveOperator(multBtn);
         resolveExpression(Operadores.MUL);
     }
 
     @FXML
-    public void handleSubtraction(ActionEvent event) {
+    private void handleSubtraction(ActionEvent event) {
         setActiveOperator(minusBtn);
         resolveExpression(Operadores.SUB);
     }    
     
     @FXML
-    public void handleAddition(ActionEvent event) {
+    private void handleAddition(ActionEvent event) {
         setActiveOperator(plusBtn);
         resolveExpression(Operadores.SUM);
     }
     
     @FXML
-    public void handleEquals(ActionEvent event) {
+    private void handleEquals(ActionEvent event) {
         resolveExpression(Operadores.EQUALS);
         setActiveOperator(null);
     }
 
     @FXML
-    public void handleBackspace(ActionEvent event) {
+    private void handleBackspace(ActionEvent event) {
         String newText = resultTextField.getText().substring(0, resultTextField.getText().length()-1);
         if (!newText.isEmpty()){
             try {
@@ -292,7 +292,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    public void handleClearAll(ActionEvent event) {
+    private void handleClearAll(ActionEvent event) {
         setResult(0.0);
         curExpr = null;
         lastExpr = null;
@@ -301,7 +301,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    public void handleClearEntry(ActionEvent event) {
+    private void handleClearEntry(ActionEvent event) {
         setResult(0.0);
         shouldResetTextField = false;
         setActiveOperator(null);
