@@ -15,7 +15,7 @@ import org.testfx.robot.Motion;
 /**
  * @author Alexandre
  */
-public class CalcTDDTests extends Application {
+public class CalcTDDTests extends ApplicationTest  {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -28,9 +28,7 @@ public class CalcTDDTests extends Application {
     
     @Test
     public void testPressDigit() {
-        // given:
-        //clickOn("#nineBtn");
-    }
-    
+        clickOn("#nineBtn");
+    }    
     
 }
