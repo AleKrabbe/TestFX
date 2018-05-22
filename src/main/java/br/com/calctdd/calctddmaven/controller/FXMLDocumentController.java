@@ -106,14 +106,14 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
-    private double getResult(){
+    public double getResult(){
         return Double.parseDouble(resultTextField.getText());
     }
     
-    private void setResult(Double value){
+    public void setResult(Double value){
         DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.US);
         DecimalFormat df = new DecimalFormat("#.##########", otherSymbols);
-       resultTextField.setText(df.format(value));
+        resultTextField.setText(df.format(value));
     }
     
     //TODO: Refactor

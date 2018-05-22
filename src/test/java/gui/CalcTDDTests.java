@@ -1,6 +1,7 @@
 package gui;
 
-import java.util.Random;
+import br.com.calctdd.calctddmaven.controller.FXMLDocumentController;
+import br.com.calctdd.calctddmaven.model.Entry;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,6 +15,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.loadui.testfx.GuiTest;
+import static org.loadui.testfx.controls.Commons.hasText;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
 /**
@@ -23,7 +25,8 @@ public class CalcTDDTests extends ApplicationTest  {
     
     private int a, b;
     private String btnA, btnB;
-        
+    private FXMLDocumentController controller;
+    
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -32,12 +35,13 @@ public class CalcTDDTests extends ApplicationTest  {
         primaryStage.setScene(new Scene(mainNode));
         primaryStage.show();
         primaryStage.toFront();
+        controller = fxmlLoader.getController();
     }
     
     @Before
     public void setUp () throws Exception {
-        a = pickRandomNumber();
-        b = pickRandomNumber();
+        a = 3;
+        b = 2;
         btnA = getBtnID(a);
         btnB = getBtnID(b);
     }
@@ -73,7 +77,7 @@ public class CalcTDDTests extends ApplicationTest  {
         assertThat(Double.valueOf(result.getText()), is(mul));
     }
     
-        @Test
+    @Test
     public void testDiv() {
         double div = (double)a / (double)b;
         TextField result = (TextField) GuiTest.find("#resultTextField");
@@ -116,11 +120,6 @@ public class CalcTDDTests extends ApplicationTest  {
                 break;
         }
         return btnName;
-    }
-    
-    private int pickRandomNumber() {
-        Random generator = new Random();
-        return generator.nextInt(10);
     }
     
 }
